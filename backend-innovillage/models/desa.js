@@ -2,9 +2,7 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
     class Desa extends Model {
-        static associate(models) {
-            models.Desa.hasMany(models.User, { as: "users" });
-        }
+        static associate(models) {}
     }
     Desa.init(
         {

@@ -49,7 +49,11 @@ module.exports = {
                 });
             }
 
+            req.body.password = await bcrypt.hashSync(req.body.password, 10);
             const user = await User.create(req.body);
+            if (!user) {
+                throw new Error("gagal membuat user");
+            }
 
             //bikin userable nya
             if (req.body.role == "desa") {
@@ -62,6 +66,9 @@ module.exports = {
                     provinsi: req.body.kecamatan_desa,
                     userId: user.id,
                 });
+                if (!desa) {
+                    throw new Error("gagal membuat desa");
+                }
                 req.body.userable_id = desa.id;
             } else if (req.body.role == "innovator") {
                 //kalo role innovator, bikin innovator baru
@@ -70,6 +77,9 @@ module.exports = {
                     deskripsi: req.body.deskripsi_innovator,
                     userId: user.id,
                 });
+                if (!innovator) {
+                    throw new Error("gagal membuat innovator");
+                }
                 req.body.userable_id = innovator.id;
             }
 
@@ -97,5 +107,57 @@ module.exports = {
             });
         }
     },
-    login: async (req, res) => {},
+    login: async (req, res) => {
+        try {
+            const schema = {
+                email: "string|unique",
+                password: "string",
+            };
+
+            const validate = v.validate(req.body, schema);
+            if (validate.lengt) {
+                return res.status(400).json(validate);
+            }
+
+            const findUser = await User.findOne({
+                where: { email: req.body.email },
+            });
+
+            if (!findUser) {
+                return res.status(400).json({
+                    message: "email belum terdaftar",
+                });
+            }
+
+            const checkPassword = await bcrypt.compare(
+                req.body.password,
+                findUser.password
+            );
+
+            if (!checkPassword) {
+                return res.status(403).json({
+                    message: "password salah",
+                });
+            }
+
+            const token = jwt.sign(
+                {
+                    id: findUser.id,
+                    name: findUser.name,
+                    email: findUser.email,
+                },
+                process.env.JWT_KEY
+            );
+
+            res.status(200).json({
+                message: "berhasil login",
+                user: findUser,
+                token: token,
+            });
+        } catch (error) {
+            res.status(500).json({
+                message: error.message,
+            });
+        }
+    },
 };
