@@ -17,21 +17,21 @@ module.exports = (sequelize, DataTypes) => {
     Inovasi.init(
         {
             id: {
-                type: Sequelize.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
-                type: Sequelize.INTEGER,
+                type: DataTypes.INTEGER,
             },
             nama: {
-                type: Sequelize.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
             },
             deskripsi: {
-                type: Sequelize.TEXT,
+                type: DataTypes.TEXT,
             },
             kategori_id: {
-                type: Sequelize.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 references: {
                     model: "kategoris",
@@ -40,11 +40,11 @@ module.exports = (sequelize, DataTypes) => {
             },
             createdAt: {
                 allowNull: false,
-                type: Sequelize.DATE,
+                type: DataTypes.DATE,
             },
             updatedAt: {
                 allowNull: false,
-                type: Sequelize.DATE,
+                type: DataTypes.DATE,
             },
         },
         {

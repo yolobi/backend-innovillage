@@ -1,9 +1,8 @@
 var express = require("express");
 var router = express.Router();
-const models = require("../models");
-const Inovasi = models.Inovasi;
+const indexController = require("../controllers/index");
 
 /* GET home page. */
-router.get("/", async (req, res) => {});
+router.get("/", indexController.index);
 
 module.exports = router;

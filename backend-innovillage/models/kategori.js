@@ -14,23 +14,23 @@ module.exports = (sequelize, DataTypes) => {
     Kategori.init(
         {
             id: {
-                type: Sequelize.INTEGER,
+                type: DataTypes.INTEGER,
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
-                type: Sequelize.INTEGER,
+                type: DataTypes.INTEGER,
             },
             nama: {
-                type: Sequelize.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
             },
             createdAt: {
                 allowNull: false,
-                type: Sequelize.DATE,
+                type: DataTypes.DATE,
             },
             updatedAt: {
                 allowNull: false,
-                type: Sequelize.DATE,
+                type: DataTypes.DATE,
             },
         },
         {

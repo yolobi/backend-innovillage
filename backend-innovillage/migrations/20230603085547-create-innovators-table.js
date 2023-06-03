@@ -6,8 +6,8 @@ module.exports = {
         await queryInterface.createTable("innovators", {
             id: {
                 type: Sequelize.INTEGER,
-                allowNull: false,
                 primaryKey: true,
+                autoIncrement: true,
             },
             nama: {
                 type: Sequelize.STRING,
