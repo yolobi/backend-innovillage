@@ -8,6 +8,8 @@ const URL = "/api/v1";
 
 var indexRouter = require("./routes/index");
 var authRouter = require("./routes/auth");
+var desaRouter = require("./routes/desa");
+var innovatorRouter = require("./routes/innovator");
 
 var app = express();
 
@@ -19,5 +21,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(`${URL}/`, indexRouter);
 app.use(`${URL}/auth`, authRouter);
+app.use(`${URL}/desa`, desaRouter);
+app.use(`${URL}/innovator`, innovatorRouter);
 
 module.exports = app;
