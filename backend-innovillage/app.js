@@ -10,6 +10,7 @@ var indexRouter = require("./routes/index");
 var authRouter = require("./routes/auth");
 var desaRouter = require("./routes/desa");
 var innovatorRouter = require("./routes/innovator");
+var inovasiRouter = require("./routes/inovasi");
 
 var app = express();
 
@@ -23,5 +24,6 @@ app.use(`${URL}/`, indexRouter);
 app.use(`${URL}/auth`, authRouter);
 app.use(`${URL}/desa`, desaRouter);
 app.use(`${URL}/innovator`, innovatorRouter);
+app.use(`${URL}/inovasi`, inovasiRouter);
 
 module.exports = app;

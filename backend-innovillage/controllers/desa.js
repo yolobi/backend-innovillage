@@ -8,10 +8,6 @@ module.exports = {
                 limit: 10,
             });
 
-            if (!desa) {
-                throw new Error("gagal memuat desa");
-            }
-
             res.status(200).json({
                 message: "berhasil mendapatkan desa",
                 desas: desa,
