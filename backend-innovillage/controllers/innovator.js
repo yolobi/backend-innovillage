@@ -22,7 +22,9 @@ module.exports = {
         try {
             const idInnovator = req.params.idInnovator;
 
-            const innovator = await Innovator.findByPk(idInnovator);
+            const innovator = await Innovator.findByPk(idInnovator, {
+                include: "inovasi",
+            });
 
             if (!innovator) {
                 return res.status(404).json({

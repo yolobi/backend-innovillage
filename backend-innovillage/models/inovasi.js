@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
                 foreignKey: "kategori_id",
                 as: "kategori",
             });
+            models.Inovasi.belongsTo(models.Innovator, {
+                foreignKey: "innovatorId",
+                as: "innovator",
+            });
         }
     }
     Inovasi.init(

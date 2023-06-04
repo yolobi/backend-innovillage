@@ -2,7 +2,9 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
     class Innovator extends Model {
-        static associate(models) {}
+        static associate(models) {
+            models.Innovator.hasMany(models.Inovasi, { as: "inovasi" });
+        }
     }
     Innovator.init(
         {

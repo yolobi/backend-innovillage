@@ -23,7 +23,9 @@ module.exports = {
         try {
             const idInovasi = req.params.idInovasi;
 
-            const inovasi = await Inovasi.findByPk(idInovasi);
+            const inovasi = await Inovasi.findByPk(idInovasi, {
+                include: "innovator",
+            });
 
             if (!inovasi) {
                 return res.status(404).json({
